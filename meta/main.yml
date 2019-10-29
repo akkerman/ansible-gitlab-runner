@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  role_name: gitlab-runner
+  author: Marcel Akkerman
+  description: gitlab-runner on Ubuntu
+  company: viewsource.nl
+  issue_tracker_url: https://github.com/akkerman/ansible-gitlab-runner/issues
+  license: license (BSD, MIT)
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+
+  galaxy_tags:
+    - gitlab-runner
+
+dependencies: []
