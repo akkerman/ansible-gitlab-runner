@@ -1,2 +1,37 @@
 ---
 # tasks file for akkerman.gitlab-runner
+
+- name: copy preference for APT pinning
+  tags: version_pin
+  template:
+    src: "gitlab-runner.pref.j2"
+    dest: "/etc/apt/preferences.d/gitlab-runner.pref"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
+- name: install gitlab runner dependencies
+  apt:
+    name:
+      - debian-archive-keyring
+      - apt-transport-https
+      - ca-certificates
+    state: present
+
+- name: add apt key
+  apt_key:
+    id: 1A4C919DB987D435939638B914219A96E15E78F4
+    url: https://packages.gitlab.com/runner/gitlab-runner/gpgkey
+    state: present
+
+- name: add gitlab-runner repository
+  apt_repository:
+    repo: deb https://packages.gitlab.com/runner/gitlab-runner/ubuntu {{ ansible_distribution_release }} main
+    state: present
+
+- name: install gitlab runner
+  apt:
+    name: "gitlab-runner={{ gitlab_runner_version }}*"
+    update_cache: yes
+    cache_valid_time: 600
+    state: present

@@ -1,0 +1,5 @@
+Explanation: Prefer GitLab provided packages over the Debian native ones
+Package: gitlab-runner
+Pin: origin packages.gitlab.com
+Pin: version {{ gitlab_runner_version }}*
+Pin-Priority: 1001

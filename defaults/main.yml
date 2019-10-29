@@ -1,2 +1,3 @@
 ---
 # defaults file for akkerman.gitlab-runner
+gitlab_runner_version: "10.5"
